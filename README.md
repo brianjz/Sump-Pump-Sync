@@ -10,7 +10,7 @@ I recently found <a href="https://www.home-assistant.io/">Home Assistant</a> and
  
 I spent some time and was able to get the data I needed from the WeMo Insight Switch. Then, using some clever Node-RED flows, I was able to get the timestamp into a local SQL server database. Though, I wanted to data to be viewable when I was not home, so I needed to get it to my remote SQL server, but that was only accessible through an SSH tunnel which I could not figure out how to do in Node-RED. 
 
-![Node-RED setup](https://github.com/brianjz/sump-pump-sync/raw/master/nodered.png)
+![Node-RED setup](https://raw.githubusercontent.com/brianjz/Sump-Pump-Sync/main/nodered.png)
 
 I also needed to poll the WeMo Insight Switch every 10 seconds since the default state of the device points to the actual switch (on/off) and not the device plugged into it (the sump pump). So, I need to see if the Sump Pump itself is on. I do this by accessing the WeMo device data and grabbing the attribute named "state_detail" which lets me know the state of the sump pump itself (standby/on). From there it does some logic if it's on or off and writes to the database.
 
