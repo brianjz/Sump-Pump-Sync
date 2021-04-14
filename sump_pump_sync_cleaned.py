@@ -32,6 +32,7 @@ with SSHTunnelForwarder(
     previous = cursor.fetchone()[0]
 
     timediff = latest - previous
+    timediffmin = round(timediff / 60)
     print("Publishing last time difference to MQTT server...")
     broker_address="" 
     client = mqtt.Client("SumpPumpSync") #create new instance
@@ -42,6 +43,7 @@ with SSHTunnelForwarder(
 
     print("--> Publishing to topic","sensors/sump_pump/last_run")
     client.publish("sensors/sump_pump/last_run", timediff, 1)#publish
+    client.publish("sensors/sump_pump/last_run/minutes", timediffmin, 1)#publish
 
     client.disconnect()
 
